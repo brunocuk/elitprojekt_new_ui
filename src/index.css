@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'Clash Display';
+    src: url('assets/fonts/ClashDisplay-Variable.woff2') format('woff2'),
+         url('assets/fonts/ClashDisplay-Variable.woff') format('woff');
+    font-display: swap;
+  }
+@font-face {
+    font-family: 'Satoshi';
+    src: url('assets/fonts/Satoshi-Variable.woff2') format('woff2'),
+         url('assets/fonts/Satoshi-Variable.woff') format('woff');
+    font-display: swap;
+  }
+
+  html{
+    overscroll-behavior: none;
+  }
+
+ body{
+  overscroll-behavior: none;
+     font-family: 'Clash Display';
+ }
+
+ .satoshi{
+  font-family: 'Satoshi';
+ }
+
+ p{
+  font-family: 'Satoshi';
+ }
+
+ .nav-button {
+    font-family: inherit;
+    font-weight: 800;
+    cursor: pointer;
+    position: relative;
+    border: none;
+    background: none;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: color;
+  }
+  
+  .nav-button:focus,
+  .nav-button:hover {
+    color: #fff;
+  }
+  
+  .nav-button:focus:after,
+  .nav-button:hover:after {
+    width: 100%;
+    left: 0%;
+  }
+  
+  .nav-button:after {
+    content: "";
+    pointer-events: none;
+    bottom: -2px;
+    left: 50%;
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: #BFFB00;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: width, left;
+  }
+
+  .heroHero {
+    clipPath: url(#heroBox);
+    width: 100%; /* Ensures full width */
+  }
+  
+  .svg-container {
+    width: 100%;
+    max-width: none; /* Prevents any width restrictions */
+  }
+
+  @media (max-width: 768px) {
+    .heroHero {
+      clipPath: url(#smallScreenHeroBox); /* Different clip path for smaller screens */
+    }
+  }
+
+  .responsive-svg {
+    width: 100%;
+    height: auto;
+    max-width: 50rem;
+  }
+
+  .header-box{
+    width: 100%;
+    flex-shrink: 0;
+    border-radius: 100px 100px 100px 100px;
+    background: rgba(38, 40, 44, 0.803);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  
+  }
+
+  .menu-box{
+    width: 100%;
+    flex-shrink: 0;
+    border-radius: 70px 70px 0px 0px;
+    background: rgba(38, 40, 44, 0.803);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  
+  }
+
+  .line-break{
+    white-space: pre-wrap;
+  }
