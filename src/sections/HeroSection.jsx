@@ -1,111 +1,160 @@
-import { useState } from "react";
-import gifOne from "../assets/gifs/hasbula-oondasta.gif";
-import gifTwo from "../assets/gifs/jeremy-clarkson-speed.gif";
-import gifThree from "../assets/gifs/michael-scott-the-office.gif";
-import gifFour from "../assets/gifs/office-5k.gif";
-import gifFive from "../assets/gifs/the-office-jog.gif";
-import gifSix from "../assets/gifs/the-office-shatatata.gif";
-import gifSeven from "../assets/gifs/theoffice-run.gif";
-import gifEight from "../assets/gifs/jim-carrey-jim-carrey-typing.gif";
-import { SpecialButton } from "../components";
-import { ROUTES } from "../routes/routes";
-import heroImage from "../assets/images/Subtract.png";
-import roundCorner from "../assets/rounded.svg";
-import roundBottom from "../assets/roundedBottom.svg";
+import { motion } from "framer-motion";
+import trogir from "../assets/images/trogirCentar.webp";
+import borovje from "../assets/images/borovjeKompleks.jpeg";
+import { Link } from "react-router-dom";
 
-const HeroSection = () => {
-  const gifs = [
-    gifOne,
-    gifTwo,
-    gifThree,
-    gifFour,
-    gifFive,
-    gifSix,
-    gifSeven,
-    gifEight,
-  ];
-
-  const [gifPosition, setGifPosition] = useState({ x: 0, y: 0 });
-  const [showGif, setShowGif] = useState(false);
-  const [currentGif, setCurrentGif] = useState(gifs[0]);
-
-  const handleMouseMove = (e) => {
-    setGifPosition({ x: e.clientX, y: e.clientY });
+const HeroSection = ({ content }) => {
+  // Container animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        staggerChildren: 0.2,
+      },
+    },
   };
 
-  const handleMouseEnter = () => {
-    // Select a random GIF from the array
-    const randomGif = gifs[Math.floor(Math.random() * gifs.length)];
-    setCurrentGif(randomGif);
-    setShowGif(true);
+  // Header content animation variants
+  const headerVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.25, 0.25, 0.75],
+      },
+    },
   };
 
-  const handleMouseLeave = () => {
-    setShowGif(false);
+  // Card animation variants
+  const cardVariants = {
+    hidden: { opacity: 0, y: 60, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 1,
+        ease: [0.25, 0.25, 0.25, 0.75],
+      },
+    },
+  };
+
+  // Card image animation variants
+  const imageVariants = {
+    hidden: { scale: 1.1 },
+    visible: {
+      scale: 1,
+      transition: {
+        duration: 1.2,
+        ease: [0.25, 0.25, 0.25, 0.75],
+      },
+    },
+  };
+
+  // Card title animation variants  
+  const titleVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        delay: 0.3,
+        ease: [0.25, 0.25, 0.25, 0.75],
+      },
+    },
   };
 
   return (
-    <div className="dark:dark:bg-darkBackground bg-textColorDark md:px-24 lg:px-32 xl:px-44 px-4 md:pt-16 pt-6 flex flex-col overflow-hidden">
-      <h1 className="dark:text-textColorDark text-darkBackground font-bold md:text-[79px] text-[40px] leading-tight tracking-wide">
-        Building{" "}
-        <span
-          className="text-primary cursor-pointer relative"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          onMouseMove={handleMouseMove}
-        >
-          Lightning-Fast
-        </span>
-        , Custom Web Applications for Growing Businesses.
-      </h1>
-      <p className="satoshi font-normal md:text-[27px] text-[17px] max-w-[800px] dark:text-textColorDark text-darkBackground pt-4">
-        We help you reduce load times, improve user experience, and scale
-        effortlessly.
-      </p>
-      <div className="pt-12 hover:cursor-pointer">
-        <SpecialButton to={ROUTES.CONTACT} />
-      </div>
-
-
-      <div
-        style={{
-          backgroundImage: `url(https://images.unsplash.com/photo-1455849318743-b2233052fcff?q=80&w=3569&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)`,
-        }}
-        className="overflow-hidden relative md:h-[700px] h-[300px] rounded-tr-[70px] rounded-b-[70px] md:mt-0 mt-12"
+    <motion.main 
+      className="flex flex-col items-center justify-center w-full"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      {/* Header section with title and subtitle */}
+      <motion.div 
+        className="flex flex-col lg:flex-row items-start lg:items-end justify-between px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 w-full pt-32 sm:pt-32 md:pt-32 lg:pt-32 pb-8 lg:pb-12 gap-6 lg:gap-0"
+        variants={headerVariants}
       >
-        <div className="absolute top-0 left-0 md:flex hidden flex-col items-start justify-start">
-          <div className="flex items-start justify-start">
-            <p className="satoshi font-normal md:text-[27px] text-[17px] max-w-[800px] dark:text-textColorDark text-darkBackground dark:bg-darkBackground bg-textColorDark rounded-br-[70px] pb-24 pt-14 md:pr-44 pr-4">
-              We help you reduce load times, improve user experience, and scale
-              effortlessly.
-            </p>
-            <img src={roundCorner} />
-          </div>
-          <img src={roundCorner} />
-        </div>
-        <div className="absolute hidden bottom-0 right-0 md:flex flex-col items-end justify-end">
-          <img src={roundBottom} />
-          <div className="flex items-end justify-end">
-            <img src={roundBottom} />
-            <div className="dark:bg-darkBackground bg-textColorDark rounded-tl-[70px] w-[400px] h-[250px]" />
-          </div>
-        </div>
-      </div>
-
-      {showGif && (
-        <img
-          src={currentGif}
-          alt="Lightning Fast GIF"
-          className="absolute pointer-events-none object-cover rounded-[16px] border-textColorDark border-2 border-opacity-45"
-          style={{
-            top: gifPosition.y + 10,
-            left: gifPosition.x + 10,
-            width: "500px", // Adjust size as needed
-            height: "300px",
+        <motion.h1 
+          className="text-[32px] sm:text-[40px] md:text-[50px] lg:text-[60px] xl:text-[65px] max-w-full lg:max-w-[900px] font-medium text-pretty leading-none order-1"
+          variants={headerVariants}
+        >
+          {content?.heroTitle}
+        </motion.h1>
+        <motion.p 
+          className="text-sm sm:text-base max-w-full lg:max-w-[435px] text-light-gray order-2 lg:order-2"
+          variants={headerVariants}
+        >
+          {content?.heroSubtitle}
+        </motion.p>
+      </motion.div>
+      
+      {/* Image cards section */}
+      <motion.div 
+        className="flex flex-col lg:flex-row items-start justify-between w-full h-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 gap-4 sm:gap-6 lg:gap-8 pb-8 sm:pb-12 lg:pb-16"
+        variants={containerVariants}
+      >
+        {/* Trogir card */}
+        <motion.div 
+          className="group relative flex flex-col items-end justify-end overflow-hidden rounded-[12px] sm:rounded-[16px] lg:rounded-[20px] w-full h-[300px] sm:h-[400px] lg:h-[500px]"
+          variants={cardVariants}
+          whileHover={{ 
+            y: -8, 
+            transition: { duration: 0.3, ease: "easeOut" } 
           }}
-        />
-      )}
-    </div>
+        >
+          <motion.img
+            src={trogir}
+            alt="Trogir - Centar"
+            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            variants={imageVariants}
+          />
+          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/100 via-black/50 to-transparent p-4 sm:p-6 lg:p-8 flex flex-col justify-end h-full">
+            <Link to={`/in-plan/trogir-centar`}>
+            <motion.h3 
+              className="text-white font-bold text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] xl:text-[36px] max-w-[800px] leading-tight"
+              variants={titleVariants}
+            >
+              Trogir - Centar
+            </motion.h3>
+            </Link>
+          </div>
+        </motion.div>
+
+        {/* Borovje card */}
+        <motion.div 
+          className="group relative flex flex-col items-end justify-end overflow-hidden rounded-[12px] sm:rounded-[16px] lg:rounded-[20px] w-full h-[300px] sm:h-[400px] lg:h-[500px]"
+          variants={cardVariants}
+          whileHover={{ 
+            y: -8, 
+            transition: { duration: 0.3, ease: "easeOut" } 
+          }}
+        >
+          <motion.img
+            src={borovje}
+            alt="Borovje Kompleks"
+            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            variants={imageVariants}
+          />
+          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/100 via-black/50 to-transparent p-4 sm:p-6 lg:p-8 flex flex-col justify-end h-full">
+          <Link to={`/in-plan/borovje-kompleks`}>
+            <motion.h3 
+              className="text-white font-bold text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] xl:text-[36px] max-w-[800px] leading-tight"
+              variants={titleVariants}
+            >
+              Borovje Kompleks
+            </motion.h3>
+            </Link>
+          </div>
+        </motion.div>
+      </motion.div>
+    </motion.main>
   );
 };
 

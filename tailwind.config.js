@@ -1,46 +1,32 @@
-module.exports = {
-  mode: 'jit',
+/** @type {import('tailwindcss').Config} */
+export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: 'class',
   theme: {
-    borderRadius: {
-      'none': '0',
-      'sm': '0.125rem',
-      'md': '0.375rem',
-      'lg': '0.5rem',
-      'full': '9999px',
-      'large': '25px',
-      '3xl': '50px',
-    },
-    fontSize: {
-      xs: ['12px', '16px'],
-      sm: ['14px', '20px'],
-      base: ['16px', '19.5px'],
-      lg: ['18px', '21.94px'],
-      xl: ['20px', '24.38px'],
-      '2xl': ['28px', '30px'],
-      '3xl': ['40px', '40px'],
-      '4xl': ['48px', '58px'],
-      '8xl': ['55px', '65px'],
-      'bigAss': ['79px', '79px'],
-    },
-    colors: {
-      'darkBackground': '#0e0f11',
-      'textColorDark': '#F5F5F5',
-      'ctaColorDark' : '#BFFB00',
-      'ctaColorLight' : '#4D0CFF',
-      'lightGray' : '#D9D9D9'
-    },
     extend: {
+      colors:{
+        "white": '#FFFFFF',
+        "black": '#000000',
+        "gray": '#383838',
+        "green": "#09261D",
+        "dark-text": "#222222",
+        "light-gray": "#959595",
+        "card-bg": "#F8F8F8",
+        "cta-color": "#EE770F",
+        "brand-color": "#0A3264",
+        "bg": "#FFFFFF"
+      },
       aspectRatio: {
-        '4/5': '4 / 6',
+        '4/5': '4 / 5',
         '3/4': '3 / 4'
       },
       fontSize: {
         14: '14px',
+      },
+      backgroundColor: {
+        'main-bg': '#E9E9E9'
       },
       borderWidth: {
         1: '1px',
@@ -55,15 +41,7 @@ module.exports = {
         800: '800px',
         1000: '1000px',
         1200: '1200px',
-        1440: '1440px',
-      },
-      screens: {
-        xs: "480px",
-        ss: "620px",
-        sm: "768px",
-        md: "1060px",
-        lg: "1200px",
-        xl: "1700px",
+        1400: '1400px',
       },
       height: {
         80: '80px',
@@ -74,4 +52,4 @@ module.exports = {
     },
   },
   plugins: [],
-};
+}

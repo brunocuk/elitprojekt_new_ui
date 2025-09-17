@@ -1,26 +1,38 @@
-import HeroSection from "../sections/HeroSection"
-import LatestWork from "../sections/LatestWork"
-import ServiceSection from "../sections/ServiceSection"
-import SuccessStories from "../sections/SuccessStories"
-import Testimonials from "../sections/Testimonials"
-import BlogSection from "../sections/BlogSection"
-import { Logo } from "../assets/icons";
+import HeroSection from "../sections/HeroSection";
+import PlanedProjects from "../sections/PlanedProjects";
+import ConstructionProjects from "../sections/ConstructionProjects";
+import transition from "../transition";
+import { Helmet } from "react-helmet";
+import { useContent } from "../config/contentContext";
+import constantsExport from "../config/constants";
+import FullScreenVideoSection from "../components/FullScreenVideoSection"
+import diPlanVideo from "../assets/video/elitProjektVideo4k.mp4"
+import ContactSection from "../sections/ContactSection";
+import FaqComponent from "../components/FaqComponent"
+
+const API_PATH = constantsExport.API_PATH;
 
 const HomePage = () => {
-  return (
-    <div className="overflow-hidden bg-darkBackground w-full h-screen flex flex-col items-center justify-center">
-      <Logo />
-      <h1 className="text-textColorDark font-bold tracking-wide text-4xl pt-12 text-center">We're working on something amazing. <span className="text-ctaColorDark text-8xl"><br/>Stay tuned!</span></h1>
-      <p className="text-textColorDark font-semibold text-xl pt-20">In the meantime you can contact us through email</p>
-      <a href="mailto:hello@progmatiq.co" className="text-2xl font-bold text-ctaColorDark pt-6">hello@progmatiq.co</a>
-      {/* <HeroSection />
-      <LatestWork />
-      <SuccessStories />
-      <ServiceSection />
-      <Testimonials />
-      <BlogSection /> */}
-    </div>
-  )
-}
+  const { content, loading, error } = useContent();
 
-export default HomePage
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error loading content. Please try again.</p>;
+
+  return (
+    <>
+      <Helmet>
+        <title>{content?.homePageSeo?.metaTitle}</title>
+        <meta name="description" content={content?.homePageSeo?.metaDescription} />
+      </Helmet>
+
+      <HeroSection content={content} />
+      <FullScreenVideoSection videoUrl={diPlanVideo} />
+      <ConstructionProjects content={content} />
+      <PlanedProjects content={content} />
+      <ContactSection />
+      <FaqComponent content={content} />
+    </>
+  );
+};
+
+export default transition(HomePage);

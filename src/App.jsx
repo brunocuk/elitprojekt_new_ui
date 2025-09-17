@@ -1,57 +1,99 @@
-import { Route, Routes } from "react-router-dom";
-import { ROUTES } from "./routes/routes";
-import { Helmet } from "react-helmet";
-import { lazy, useEffect, Suspense, useState } from "react";
-import { ScrollToTop, NavBar, Footer, NavMenu } from "./components";
-import {
-  AboutUs,
-  BlogDetails,
-  Contact,
-  HomePage,
-  Services,
-  Work,
-} from "./pages";
+import { useEffect, useState } from "react";
+import Lenis from "@studio-freight/lenis";
+
+import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
+import MobileMenu from "./components/MobileMenu";
+import ScrollToTop from "./config/ScrollToTop";
+
+import { Route, Routes, useLocation } from "react-router-dom";
+import { ROUTES } from "./config/routes";
+
+import HomePage from "./pages/HomePage";
+import ContactPage from "./pages/ContactPage";
+import AboutPage from "./pages/AboutPage";
+import InPlan from "./pages/InPlan";
+import InPlanDetails from "./pages/InPlanDetails";
+import InConstruction from "./pages/InConstruction";
+import InConstructionDetails from "./pages/InConstructionDetails";
+import BlogPage from "./pages/BlogPage";
+import BlogDetails from "./pages/BlogDetails";
+import NotFound from "./pages/NotFound";
 import { AnimatePresence } from "framer-motion";
+import CookieBanner from "./components/CookieBanner";
+import { initConsentFromStorage } from "./utils/consent";
 
 function App() {
+  const location = useLocation();
+
+  const [scrollY, setScrollY] = useState(0);
   const [isOpen, setOpen] = useState(false);
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
+  const [navBarColor, setNavBarColor] = useState("white");
 
-  // Apply the theme to the HTML element and save it to local storage
+  const closeMobileMenu = () => setOpen(false);
+
   useEffect(() => {
-    const root = window.document.documentElement;
-    root.classList.remove(theme === "dark" ? "light" : "dark");
-    root.classList.add(theme);
-    localStorage.setItem("theme", theme);
-  }, [theme]);
+    // If the user previously chose, sync that with GTM on startup
+    initConsentFromStorage();
+  }, []);
 
-  const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
-  };
+  /** Initialize Lenis once */
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      smooth: true,
+      smoothTouch: false,
+    });
+
+    // Track scroll position
+    lenis.on("scroll", ({ scroll }) => {
+      setScrollY(scroll);
+    });
+
+    // Animation loop
+    let rafId;
+    function raf(time) {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    }
+    rafId = requestAnimationFrame(raf);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
+    };
+  }, [location]);
 
   return (
     <>
-      <div className="application">
-        <Helmet>
-          <meta charSet="utf-8" />
-          <title>Progmatiq</title>
-        </Helmet>
+      <NavBar scrollY={scrollY} isOpen={isOpen} setOpen={setOpen} location={location.pathname} navColor={navBarColor} />
+
+      <div className="bg-white" id="main-container">
+        <Routes>
+          <Route path={ROUTES.HOME} element={<HomePage />} />
+          <Route path={ROUTES.ABOUT_US} element={<AboutPage />} />
+          <Route path={ROUTES.CONTACT} element={<ContactPage />} />
+          <Route path={ROUTES.IN_PLAN} element={<InPlan />} />
+          <Route path={ROUTES.IN_PLAN_DETAILS} element={<InPlanDetails />} />
+          <Route path={ROUTES.IN_CONSTRUCTION} element={<InConstruction />} />
+          <Route path={ROUTES.IN_CONSTRUCTION_DETAILS} element={<InConstructionDetails />} />
+          <Route path={ROUTES.BLOG} element={<BlogPage />} />
+          <Route path={ROUTES.BLOG_DETAILS} element={<BlogDetails />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+
+        {isOpen && (
+          <AnimatePresence>
+            <MobileMenu closeMenu={closeMobileMenu} />
+          </AnimatePresence>
+        )}
+
+        <div className="-z-10">
+        <Footer />
+        </div>
+        <ScrollToTop />
       </div>
-      {/* <NavBar isOpen={isOpen} setOpen={setOpen} toggle={toggleTheme} theme={theme} /> */}
-      <Routes>
-        <Route path={ROUTES.HOME} element={<HomePage />} />
-        <Route path={ROUTES.CONTACT} element={<Contact />} />
-        <Route path={ROUTES.ABOUT_US} element={<AboutUs />} />
-        <Route path={ROUTES.SERVICES} element={<Services />} />
-        <Route path={ROUTES.WORK} element={<Work />} />
-        <Route path={ROUTES.BLOG_DETAILS} element={<BlogDetails />} />
-        {/* <Route path="*" element={<NotFound />} /> */}
-      </Routes>
-      {/* <Footer /> */}
-      <ScrollToTop />
-      <AnimatePresence>
-        {isOpen && <NavMenu setOpen={setOpen} toggle={toggleTheme} />}
-      </AnimatePresence>
+      <CookieBanner />
     </>
   );
 }

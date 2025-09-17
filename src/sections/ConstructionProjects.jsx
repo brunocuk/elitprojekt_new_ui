@@ -1,0 +1,151 @@
+import { Swiper, SwiperSlide } from "swiper/react";
+import {
+  Navigation,
+  Pagination,
+  A11y,
+} from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { useLocale } from "../config/localeContext";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import constantsExport from "../config/constants";
+import { Link } from "react-router-dom";
+
+const API_PATH = constantsExport.API_PATH;
+const IMG_PATH = constantsExport.IMG_PATH;
+
+const ConstructionProjects = ({ id, content }) => {
+  const { locale } = useLocale();
+  const [projects, setProjects] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchContent = async () => {
+      try {
+        const res = await axios.get(`${API_PATH}/api/in-constructions?locale=${locale}&populate=*`);
+        setProjects(res.data.data);
+        setLoading(false);
+      } catch (err) {
+        console.error("Error fetching home page:", err);
+        setLoading(false);
+      }
+    };
+
+    fetchContent();
+  }, [locale]);
+
+  return (
+    <div className="flex items-center justify-center">
+      <div className="flex flex-col gap-3 sm:gap-4 items-center justify-center pb-16 sm:pb-20 md:pb-24 lg:pb-32 bg-white w-full py-24">
+        <h3 className="font-medium text-[35px] sm:text-[48px] md:text-[48px] lg:text-[48px] xl:text-[57px] 2xl:text-[60px] text-center leading-tight text-dark-color">
+          {content?.inConstructionTitle}
+        </h3>
+        
+        <p className="font-normal text-sm sm:text-base md:text-base lg:text-base text-center pretty tracking-wide leading-5 sm:leading-6 md:leading-7 max-w-[90%] sm:max-w-[550px] md:max-w-[650px] text-light-gray px-2">
+          {content?.inConstructionSubtitle}
+        </p>
+
+        {/* Swiper Container with Custom Navigation */}
+        <div className="w-full pt-8 sm:pt-10 md:pt-12 px-8 relative">
+          <Swiper
+            speed={500}
+            modules={[Navigation, Pagination, A11y]}
+            slidesPerView={1.1}
+            spaceBetween={12}
+            navigation={{
+              enabled: typeof window !== 'undefined' && window.innerWidth >= 768,
+              nextEl: '.swiper-button-next-custom-construction',
+              prevEl: '.swiper-button-prev-custom-construction',
+            }}
+            pagination={{
+              clickable: true,
+              dynamicBullets: true,
+            }}
+            breakpoints={{
+              480: {
+                slidesPerView: 1.1,
+                spaceBetween: 12,
+              },
+              640: {
+                slidesPerView: 1.2,
+                spaceBetween: 24,
+              },
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 32,
+              },
+              1024: {
+                slidesPerView: 3,
+                spaceBetween: 48,
+              },
+              1280: {
+                slidesPerView: 3,
+                spaceBetween: 64,
+              }
+            }}
+          >
+            {projects?.map((project) => (
+              <SwiperSlide key={project.id}>
+                <div className="relative w-full h-[400px] rounded-lg sm:rounded-xl overflow-hidden shadow-lg group">
+                  <Link to={`/in-construction/${project.slug}`} state={{ content: content }}>
+                    <img
+                      src={project.coverImage.url}
+                      alt={project.name}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/100 via-black/50 to-transparent p-8 flex flex-col justify-end h-full">
+                      <h3 className="text-white font-bold text-3xl max-w-[90%] sm:max-w-[600px] md:max-w-[700px] lg:max-w-[800px] leading-tight">
+                        {project.name}
+                      </h3>
+                    </div>
+                  </Link>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
+          {/* Custom Navigation Arrows - Bottom Right */}
+          <div className="flex items-center justify-end gap-3 mt-8 hidden md:flex">
+            <div className="swiper-button-prev-custom-construction w-12 h-12 bg-white border border-gray-200 rounded-full shadow-md flex items-center justify-center cursor-pointer hover:bg-gray-50 hover:scale-105 transition-all duration-200 group">
+              <svg 
+                className="w-5 h-5 text-dark-text group-hover:text-black transition-colors" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </div>
+
+            <div className="swiper-button-next-custom-construction w-12 h-12 bg-white border border-gray-200 rounded-full shadow-md flex items-center justify-center cursor-pointer hover:bg-gray-50 hover:scale-105 transition-all duration-200 group">
+              <svg 
+                className="w-5 h-5 text-dark-text group-hover:text-black transition-colors" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        {/* Hide default Swiper navigation and style pagination */}
+        <style jsx>{`
+          .swiper-button-next,
+          .swiper-button-prev {
+            display: none !important;
+          }
+          .swiper-pagination {
+            position: relative !important;
+            margin-top: 100px !important;
+          }
+        `}</style>
+      </div>
+    </div>
+  );
+};
+
+export default ConstructionProjects;

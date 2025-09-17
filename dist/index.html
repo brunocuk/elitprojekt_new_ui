@@ -1,34 +1,62 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <script>
+      // Default everything to denied (GDPR-safe) before GTM loads
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied'
+      });
+    </script>
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-NJXRGH8P');</script>
+  <!-- End Google Tag Manager -->
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function(event) {
+var cpm = {};
+window.cookiehub.load(cpm);
+});
+</script>
+
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/assets/favicon-BTTzm-nk.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Progmatiq</title>
-    <script type="module" crossorigin src="/assets/index-CvgICysA.js"></script>
+    <title>DI PLAN</title>
+    <script type="module" crossorigin src="/assets/index-C_QegVZQ.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/extend-BByqELpg.js">
-    <link rel="modulepreload" crossorigin href="/assets/react-CB5owgb3.js">
+    <link rel="modulepreload" crossorigin href="/assets/react-CLFJvBNc.js">
     <link rel="modulepreload" crossorigin href="/assets/scheduler-CzFDRTuY.js">
-    <link rel="modulepreload" crossorigin href="/assets/react-dom-B4Osjcmc.js">
+    <link rel="modulepreload" crossorigin href="/assets/react-dom-u9Lzvi1q.js">
+    <link rel="modulepreload" crossorigin href="/assets/@studio-freight-Cr6TEtVO.js">
+    <link rel="modulepreload" crossorigin href="/assets/@remix-run-5BTCP4xf.js">
+    <link rel="modulepreload" crossorigin href="/assets/react-router-BS_tQZOX.js">
+    <link rel="modulepreload" crossorigin href="/assets/react-router-dom-DtJldJi7.js">
+    <link rel="modulepreload" crossorigin href="/assets/hamburger-react-BHcSuZYD.js">
+    <link rel="modulepreload" crossorigin href="/assets/framer-motion-BBRU_W6R.js">
+    <link rel="modulepreload" crossorigin href="/assets/swiper-C09-QYu5.js">
+    <link rel="modulepreload" crossorigin href="/assets/axios-CWP_aQii.js">
     <link rel="modulepreload" crossorigin href="/assets/prop-types-Dq9A4-Vv.js">
-    <link rel="modulepreload" crossorigin href="/assets/react-side-effect-qjoTJXUv.js">
+    <link rel="modulepreload" crossorigin href="/assets/react-side-effect-03pnLfrN.js">
     <link rel="modulepreload" crossorigin href="/assets/react-fast-compare-C4-epB8v.js">
     <link rel="modulepreload" crossorigin href="/assets/object-assign-Cu3wusih.js">
-    <link rel="modulepreload" crossorigin href="/assets/react-helmet-Bog5YEMi.js">
-    <link rel="modulepreload" crossorigin href="/assets/@remix-run-Br25Cn4W.js">
-    <link rel="modulepreload" crossorigin href="/assets/react-router-BAncH5rP.js">
-    <link rel="modulepreload" crossorigin href="/assets/react-router-dom-DMLiwyJt.js">
-    <link rel="modulepreload" crossorigin href="/assets/framer-motion-CJEcWg_x.js">
-    <link rel="modulepreload" crossorigin href="/assets/swiper-DOBNoQe8.js">
-    <link rel="modulepreload" crossorigin href="/assets/axios-DXsv3KKR.js">
+    <link rel="modulepreload" crossorigin href="/assets/react-helmet-BkEfvtzl.js">
+    <link rel="modulepreload" crossorigin href="/assets/lucide-react-B3bOVml2.js">
     <link rel="modulepreload" crossorigin href="/assets/devlop-Cl3hj7Sz.js">
     <link rel="modulepreload" crossorigin href="/assets/bail-FqpXQuLt.js">
     <link rel="modulepreload" crossorigin href="/assets/is-plain-obj-C1gvLhAf.js">
     <link rel="modulepreload" crossorigin href="/assets/trough-B_b8ryxu.js">
     <link rel="modulepreload" crossorigin href="/assets/unist-util-stringify-position-Ch_qCilz.js">
-    <link rel="modulepreload" crossorigin href="/assets/vfile-message-Bq256rVA.js">
-    <link rel="modulepreload" crossorigin href="/assets/vfile-tbz-BywF.js">
-    <link rel="modulepreload" crossorigin href="/assets/unified-Cs08uNYu.js">
+    <link rel="modulepreload" crossorigin href="/assets/vfile-message-Ezj_CYSE.js">
+    <link rel="modulepreload" crossorigin href="/assets/vfile-DoIswyph.js">
+    <link rel="modulepreload" crossorigin href="/assets/unified-DzT9ghXS.js">
     <link rel="modulepreload" crossorigin href="/assets/micromark-util-decode-numeric-character-reference-CNs1qBpV.js">
     <link rel="modulepreload" crossorigin href="/assets/decode-named-character-reference-C3-224fz.js">
     <link rel="modulepreload" crossorigin href="/assets/micromark-util-decode-string-strjl-tx.js">
@@ -39,17 +67,17 @@
     <link rel="modulepreload" crossorigin href="/assets/micromark-factory-space-CA-Wq7KA.js">
     <link rel="modulepreload" crossorigin href="/assets/micromark-util-classify-character-GCpR5yWH.js">
     <link rel="modulepreload" crossorigin href="/assets/micromark-util-resolve-all-PQCKh0dx.js">
-    <link rel="modulepreload" crossorigin href="/assets/micromark-util-subtokenize-Bdv1B1ce.js">
+    <link rel="modulepreload" crossorigin href="/assets/micromark-util-subtokenize-BC4BSQ9J.js">
     <link rel="modulepreload" crossorigin href="/assets/micromark-factory-destination-CkgxUJuk.js">
     <link rel="modulepreload" crossorigin href="/assets/micromark-factory-label-U15tx9Nh.js">
     <link rel="modulepreload" crossorigin href="/assets/micromark-factory-title-reCpaPbc.js">
     <link rel="modulepreload" crossorigin href="/assets/micromark-factory-whitespace-_v4v79HM.js">
     <link rel="modulepreload" crossorigin href="/assets/micromark-util-html-tag-name-DbKNfynz.js">
-    <link rel="modulepreload" crossorigin href="/assets/micromark-core-commonmark-DGH4vyL8.js">
-    <link rel="modulepreload" crossorigin href="/assets/micromark-DTlTLvYZ.js">
-    <link rel="modulepreload" crossorigin href="/assets/mdast-util-to-string-C_aolqmU.js">
-    <link rel="modulepreload" crossorigin href="/assets/mdast-util-from-markdown-CeHMh-rK.js">
-    <link rel="modulepreload" crossorigin href="/assets/remark-parse-BrXu98zB.js">
+    <link rel="modulepreload" crossorigin href="/assets/micromark-core-commonmark-D5ehRGmS.js">
+    <link rel="modulepreload" crossorigin href="/assets/micromark-m8Gu3KxW.js">
+    <link rel="modulepreload" crossorigin href="/assets/mdast-util-to-string-DzL_e8Nz.js">
+    <link rel="modulepreload" crossorigin href="/assets/mdast-util-from-markdown-BTMsiJTD.js">
+    <link rel="modulepreload" crossorigin href="/assets/remark-parse-BfDbiVyB.js">
     <link rel="modulepreload" crossorigin href="/assets/@ungap-DDJC10qW.js">
     <link rel="modulepreload" crossorigin href="/assets/micromark-util-sanitize-uri-WGc3xW3f.js">
     <link rel="modulepreload" crossorigin href="/assets/unist-util-position-60F3QETU.js">
@@ -59,22 +87,25 @@
     <link rel="modulepreload" crossorigin href="/assets/unist-util-visit-DGoE-dKL.js">
     <link rel="modulepreload" crossorigin href="/assets/mdast-util-to-hast-BfaRxxVW.js">
     <link rel="modulepreload" crossorigin href="/assets/remark-rehype-1Bk2Q172.js">
-    <link rel="modulepreload" crossorigin href="/assets/comma-separated-tokens-xMQ5YY98.js">
-    <link rel="modulepreload" crossorigin href="/assets/property-information-C2mYTYrW.js">
+    <link rel="modulepreload" crossorigin href="/assets/comma-separated-tokens-D8TqSuIK.js">
+    <link rel="modulepreload" crossorigin href="/assets/property-information-Bx45xMUt.js">
     <link rel="modulepreload" crossorigin href="/assets/space-separated-tokens-DD3iYX1K.js">
     <link rel="modulepreload" crossorigin href="/assets/inline-style-parser-D--Rb2MU.js">
-    <link rel="modulepreload" crossorigin href="/assets/style-to-object-CVRPTrxX.js">
+    <link rel="modulepreload" crossorigin href="/assets/style-to-object-CXMZSo3B.js">
+    <link rel="modulepreload" crossorigin href="/assets/style-to-js-DgQmObah.js">
     <link rel="modulepreload" crossorigin href="/assets/hast-util-whitespace-D4Wp6AEg.js">
-    <link rel="modulepreload" crossorigin href="/assets/estree-util-is-identifier-name-BgBfM8ME.js">
-    <link rel="modulepreload" crossorigin href="/assets/hast-util-to-jsx-runtime-B6Fr0rdo.js">
+    <link rel="modulepreload" crossorigin href="/assets/estree-util-is-identifier-name-Dp6szD92.js">
+    <link rel="modulepreload" crossorigin href="/assets/hast-util-to-jsx-runtime-DnOaWE8A.js">
     <link rel="modulepreload" crossorigin href="/assets/html-url-attributes-D46m5wfe.js">
-    <link rel="modulepreload" crossorigin href="/assets/react-markdown-CG6h3MqM.js">
-    <link rel="modulepreload" crossorigin href="/assets/react-calendly-BjAGzLhy.js">
-    <link rel="modulepreload" crossorigin href="/assets/@lottiefiles-DT_mWCGZ.js">
-    <link rel="stylesheet" crossorigin href="/assets/swiper-ByNiLjPe.css">
-    <link rel="stylesheet" crossorigin href="/assets/index-BsxX1Qig.css">
+    <link rel="modulepreload" crossorigin href="/assets/react-markdown-BD-8kzV7.js">
+    <link rel="stylesheet" crossorigin href="/assets/swiper-DJALnRHr.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-DiMc8RGU.css">
   </head>
   <body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NJXRGH8P"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
     <div id="root"></div>
   </body>
 </html>

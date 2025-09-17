@@ -1,14 +1,18 @@
-import { createRoot } from "react-dom/client";
+import { LocaleProvider } from "./config/localeContext.jsx"
+import { ContentProvider } from "./config/contentContext.jsx";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
 import "./index.css";
-import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 
-const root = createRoot(document.getElementById("root"));
-
-root.render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <LocaleProvider>
+    <ContentProvider>
     <BrowserRouter>
       <App />
     </BrowserRouter>
+    </ContentProvider>
+    </LocaleProvider>
   </React.StrictMode>
 );

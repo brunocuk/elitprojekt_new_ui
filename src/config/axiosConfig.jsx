@@ -1,6 +1,6 @@
 import axios from "axios";
-import constantsExport from '../';
-import {ROUTES} from "../routes/routes";
+import constantsExport from './constants';
+import {ROUTES} from "./routes";
 
 const initializeAxios = () => {
     // Add a request interceptor
@@ -33,7 +33,7 @@ const initializeAxios = () => {
             return response
         },
         (error) => {
-            if (error.response?.config?.url?.indexOf("/me") < 0 && error.response?.config?.url?.indexOf(ROUTES.LOGIN) < 0 && error.response.status === 401) {
+            if (error.response?.config?.url?.Of("/me") < 0 && error.response?.config?.url?.Of(ROUTES.LOGIN) < 0 && error.response.status === 401) {
                 console.error("Unauthorized request! Send to login page!");
                 window.location.href = ROUTES.LOGIN;
             }

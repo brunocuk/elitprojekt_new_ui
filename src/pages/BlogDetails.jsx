@@ -1,171 +1,139 @@
-import { useState, useEffect, useRef } from "react";
-import { useParams } from "react-router-dom"; // Assuming React Router is used for routing
+import { useParams, Link } from "react-router-dom";
+import transition from "../transition";
 import axios from "axios";
-import Markdown from "react-markdown";
-import rounded from "../assets/rounded.svg";
-import roundedBottom from "../assets/roundedBottom.svg";
+import { useState, useEffect } from "react";
 import constantsExport from "../config/constants";
+import { useLocale } from "../config/localeContext";
+import ReactMarkdown from "react-markdown";
+import { Helmet } from "react-helmet";
+import NotFound from "./NotFound";
 
 const API_PATH = constantsExport.API_PATH;
 const IMG_PATH = constantsExport.IMG_PATH;
 
 const BlogDetails = () => {
-  const { slug } = useParams(); // Get slug from URL
+  const { locale } = useLocale();
+  const { slug } = useParams();
   const [blog, setBlog] = useState(null);
   const [loading, setLoading] = useState(true);
-  const leftSectionRef = useRef(null);
-  const [isSticky, setIsSticky] = useState(false);
-  const [leftSectionHeight, setLeftSectionHeight] = useState(0);
-
-  useEffect(() => {}, []);
 
   useEffect(() => {
-    const fetchBlog = async () => {
+    const fetchContent = async () => {
       try {
-        const response = await axios.get(
-          API_PATH + `/api/blogs?filters[slug][$eq]=${slug}&populate=*`
+        // Use filters to get blog by slug
+        const res = await axios.get(
+          `${API_PATH}/api/blogs?filters[slug][$eq]=${slug}&locale=${locale}&populate=*`
         );
-        setBlog(response.data.data[0]); // Get the first (and only) matching blog
-      } catch (error) {
-        console.error("Error fetching blog:", error);
-      } finally {
+
+        const data = res.data.data[0]; // Strapi returns an array
+        setBlog(res.data.data[0]);
+        setLoading(false);
+      } catch (err) {
+        console.error("Error fetching blog:", err);
         setLoading(false);
       }
     };
 
-    fetchBlog();
+    fetchContent();
+  }, [slug, locale]);
 
-    const leftSection = leftSectionRef.current;
+  const isoDate = blog?.publishedAt;
+  const dateObj = new Date(isoDate);
 
-    if (!leftSection) return;
+  const day = String(dateObj.getDate()).padStart(2, "0");
+  const month = String(dateObj.getMonth() + 1).padStart(2, "0");
+  const year = dateObj.getFullYear();
 
-    // Measure the height of the Left Section
-    setLeftSectionHeight(leftSection.offsetHeight);
+  const formattedDate = `${day}.${month}.${year}`;
 
-    const leftSectionTop = leftSection.offsetTop;
-
-    const handleScroll = () => {
-      setIsSticky(window.scrollY >= leftSectionTop);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [slug]);
-
-  if (loading) return <p>Loading...</p>;
-  if (!blog) return <p>Blog not found.</p>;
-
-  const formatDate = (isoDateString) => {
-    // Create a Date object from the ISO string
-    const date = new Date(isoDateString);
-
-    // Format the date into "26 Nov 2024"
-    const options = { day: "2-digit", month: "short", year: "numeric" };
-    return date.toLocaleDateString("en-US", options);
-  };
+  if (loading) return <p className="text-center">Loading...</p>;
+  if (!blog) return <NotFound />;
 
   return (
-    <div className="dark:dark:bg-darkBackground bg-textColorDark pt-6 flex flex-col overflow-hidden px-4 md:px-24 lg:px-32 xl:px-44">
-      {/* Hero Section */}
-      <div
-        style={{
-          backgroundImage: `url("${IMG_PATH + blog.image.url}")`,
-        }}
-        className="w-full relative h-[600px] bg-center bg-cover md:rounded-[70px] rounded-[30px] flex flex-col"
-      >
-        <div className="absolute top-0 left-0">
-          <div className="flex items-start">
-            <div className="flex flex-col gap-4 bg-darkBackground md:rounded-br-[70px] rounded-br-[30px] py-6 pl-3 pr-8 w-3/4">
-              <h1 className="dark:dark:text-textColorDark text-darkBackground font-bold md:text-[60px] text-[27px] leading-tight tracking-wide">
-                {blog.Name}
-              </h1>
-            </div>
-            <img
-              src={rounded}
-              className="md:w-[70px] w-[30px] md:h-[70px] h-[30px]"
-            />
-          </div>
-          <img
-            src={rounded}
-            className="md:w-[70px] w-[30px] md:h-[70px] h-[30px]"
-          />
-        </div>
-        <div className="absolute bottom-0 right-0 flex flex-col items-end">
-          <img src={roundedBottom} className="w-[16px] h-[16px]" />
-          <div className="flex items-end">
-            <img src={roundedBottom} className="w-[16px] h-[16px]" />
-            <div className="bg-darkBackground p-4 rounded-tl-[16px] flex flex-col">
-              <img
-                src={IMG_PATH + `${blog.author.formats.thumbnail.url}`}
-                alt={blog.Name}
-                className="w-24 h-24 object-cover rounded-[12px]"
-              />
-              <p className="text-textColorDark text-xs pt-2 tracking-widest">
-                Author:
-              </p>
-              <h3 className="text-textColorDark font-semibold">
-                {blog.authorName}
-              </h3>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* Hero Section End */}
+    <>
+      <Helmet>
+        <title>{blog?.blogSeo?.metaTitle}</title>
+        <meta name="description" content={blog?.blogSeo?.metaDescription} />
 
-      <div className="flex justify-between items-start gap-6 pt-12">
-        {/* // Left Section */}
-        <div className="w-1/4">
-          <div className="bg-textColorDark bg-opacity-10 rounded-[28px] p-4 flex flex-col">
-            <p className="text-textColorDark text-sm pt-4 pb-2">
-              {blog.ShortDescription}
+        {/* Open Graph tags */}
+        <meta property="og:title" content={blog?.blogSeo?.metaTitle} />
+        <meta
+          property="og:description"
+          content={blog?.blogSeo?.metaDescription}
+        />
+        <meta
+          property="og:image"
+          content={
+            blog?.blogSeo?.shareImage ||
+            blog?.featuredImage ||
+            "/default-share-image.jpg"
+          }
+        />
+        <meta
+          property="og:image:alt"
+          content={blog?.blogSeo?.shareImageAlt || blog?.blogSeo?.metaTitle}
+        />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={window.location.href} />
+
+        {/* Twitter Card tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={blog?.blogSeo?.metaTitle} />
+        <meta
+          name="twitter:description"
+          content={blog?.blogSeo?.metaDescription}
+        />
+        <meta
+          name="twitter:image"
+          content={
+            blog?.blogSeo?.shareImage ||
+            blog?.featuredImage ||
+            "/default-share-image.jpg"
+          }
+        />
+      </Helmet>
+      <div className="px-4 py-32 bg-white flex flex-col items-center justify-center">
+        <h1 className="text-black font-medium lg:text-[60px] text-[30px] max-w-[800px] text-center text-pretty leading-none pt-12 pb-4 w-full">
+          {blog.Title}
+        </h1>
+        <p className="text-dark-text text-xl font-normal max-w-[700px] text-center tracking-wide leading-relaxed">
+          {blog.excerpt}
+        </p>
+        <div className="flex items-center justify-center gap-16 pt-4 pb-16">
+          <div className="flex flex-col items-center justify-center gap-2">
+            <p className="text-dark-text text-sm font-bold uppercase">Date</p>
+            <p className="text-light-text text-sm font-semibold">
+              {formattedDate}
+            </p>
+          </div>
+          <div className="flex flex-col items-center justify-center gap-2">
+            <p className="text-dark-text text-sm font-bold uppercase">Author</p>
+            <p className="text-light-text text-sm font-semibold">
+              {blog.authorName}
+            </p>
+          </div>
+          <div className="flex flex-col items-center justify-center gap-2">
+            <p className="text-dark-text text-sm font-bold uppercase">
+              Read Time
+            </p>
+            <p className="text-light-text text-sm font-semibold">
+              {blog.readTime} Minutes
             </p>
           </div>
         </div>
-
-        {/* // Middle Section */}
-        <div className="w-2/4 flex flex-col text-textColorDark">
-          <div className="p-2 bg-textColorDark rounded-full bg-opacity-10 flex items-center justify-center w-[220px] mb-4">
-            <p className="text-textColorDark tracking-wide text-sm">
-              Updated At: {formatDate(blog.updatedAt)}
-            </p>
-          </div>
-          <Markdown className="line-break text-textColorDark">
-            {blog.content}
-          </Markdown>
-          <div
-            dangerouslySetInnerHTML={{ __html: blog.TinyEditor }}
-            style={{ wordWrap: "break-word" }}
-            className="line-break"
-          ></div>
-          <div className="flex items-center gap-4 border-t-2 border-textColorDark border-opacity-15 mt-4 pt-4">
-            <img
-              src={IMG_PATH + `${blog.author.formats.thumbnail.url}`}
-              alt={blog.Name}
-              className="w-24 h-24 object-cover rounded-[12px]"
-            />
-            <div className="flex flex-col">
-              <p className="text-textColorDark text-sm tracking-widest text-opacity-50">
-                Written by:
-              </p>
-              <h3 className="text-textColorDark font-semibold">
-                {blog.authorName}
-              </h3>
-              <h3 className="text-textColorDark text-sm text-opacity-50 font-normal">
-                {blog.authorPosition}
-              </h3>
-            </div>
-          </div>
+        <img
+          src={blog?.coverImage?.url}
+          alt={blog.Title}
+          className="w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] xl:h-[800px] 2xl:h-[800px] object-cover rounded-[40px] sm:rounded-[50px] md:rounded-[60px] lg:rounded-[70px] xl:rounded-[80px] max-w-[1400px]"
+        />
+        <div className="text-light-text text-lg leading-relaxed mb-6 mt-24 max-w-[800px] whitespace-pre-wrap">
+          <ReactMarkdown class="line-break">{blog.content}</ReactMarkdown>
         </div>
-
-        {/* // Right Section */}
-        <div className="w-1/4"></div>
       </div>
-
-    </div>
+    </>
   );
 };
 
-export default BlogDetails;
+export default transition(BlogDetails);
