@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet";
 import { useContent } from "../config/contentContext";
 import constantsExport from "../config/constants";
 import FullScreenVideoSection from "../components/FullScreenVideoSection"
-import diPlanVideo from "../assets/video/elitProjektVideo4k.mp4"
+import diPlanVideo from "../assets/video/elitProjektVideo.mp4"
 import ContactSection from "../sections/ContactSection";
 import FaqComponent from "../components/FaqComponent"
 
