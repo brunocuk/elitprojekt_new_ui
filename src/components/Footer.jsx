@@ -9,28 +9,28 @@ const Footer = ({ show }) => {
 
   const menuItems = [
     { key: "home", route: ROUTES.HOME },
-    { key: "properties", route: ROUTES.PROPERTIES },
-    { key: "projects", route: ROUTES.PROJECTS },
+    { key: "inConstruction", route: ROUTES.IN_CONSTRUCTION },
+    { key: "projects", route: ROUTES.IN_PLAN },
     { key: "about", route: ROUTES.ABOUT_US },
   ];
 
   const menuLabels = {
     "hr-HR": {
       menu: "Menu",
-      home: "Home", 
-      properties: "Properties",
-      projects: "Our Projects",
-      about: "About Us",
-      contact: "Contact",
-      contactUs: "Contact Us",
-      bookCall: "Book a call",
-      socialMedia: "Social Media",
+      home: "Naslovna", 
+      inConstruction: "U Izgradnji",
+      projects: "U planu",
+      about: "O nama",
+      contact: "Kontakt",
+      contactUs: "Kontaktiraj nas",
+      bookCall: "Nazovi nas",
+      socialMedia: "Društvene mreže",
     },
     en: {
       menu: "Menu",
       home: "Home",
-      properties: "Properties", 
-      projects: "Our Projects",
+      inConstruction: "In Construction", 
+      projects: "In Plan",
       about: "About Us",
       contact: "Contact",
       contactUs: "Contact Us",
@@ -90,13 +90,13 @@ const Footer = ({ show }) => {
                 </h3>
                 <div className="flex flex-col gap-2 sm:gap-3">
                   <a 
-                    href="#" 
+                    href="https://elitprojekt.com/contact" 
                     className="text-black/70 hover:text-black font-medium transition-colors text-sm sm:text-base"
                   >
                     {menuLabels[locale.locale]?.contactUs || "Contact Us"}
                   </a>
                   <a 
-                    href="#" 
+                    href="tel:+385994339499" 
                     className="text-black/70 hover:text-black font-medium transition-colors text-sm sm:text-base"
                   >
                     {menuLabels[locale.locale]?.bookCall || "Book a call"}
@@ -108,7 +108,7 @@ const Footer = ({ show }) => {
                     info@elitprojekt.com
                   </a>
                   <a 
-                    href="tel:+385913789654" 
+                    href="tel:+385994339499" 
                     className="text-black/70 hover:text-black font-medium transition-colors text-sm sm:text-base"
                   >
                     +385 99 4339 499

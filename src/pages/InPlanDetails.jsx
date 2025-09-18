@@ -578,7 +578,7 @@ const InConstructionDetails = () => {
           }
         `}</style>
       </div>
-      <div className="bg-green w-full flex flex-col gap-10 items-center justify-center py-12 px-44 mb-24">
+      <div className="bg-green w-full flex flex-col gap-10 items-center justify-center py-12 px-4 sm:px-10 md:px-20 lg:px-32 xl:px-44 mb-16">
         <h3 className="text-white font-normal text-5xl">
           {locale === "hr-HR" ? "Tlocrt nekretnine" : "Property blueprint"}
         </h3>

@@ -48,7 +48,7 @@ const ConstructionProjects = ({ id, content }) => {
         </p>
 
         {/* Swiper Container with Custom Navigation */}
-        <div className="w-full pt-8 sm:pt-10 md:pt-12 px-8 relative">
+        <div className="w-full pt-8 sm:pt-10 md:pt-12 px-0 lg:px-8 pl-4 relative">
           <Swiper
             speed={500}
             modules={[Navigation, Pagination, A11y]}

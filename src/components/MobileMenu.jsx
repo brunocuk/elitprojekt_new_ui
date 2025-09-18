@@ -45,8 +45,8 @@ const MobileMenu = ({ closeMenu }) => {
 
   const navLinks = [
     { title: (locale.locale === "hr-HR" ? "Naslovna" : "Home"), href: ROUTES.HOME },
-    { title: (locale.locale === "hr-HR" ? "Projekti" : "In Construction"), href: ROUTES.IN_CONSTRUCTION },
-    { title: (locale.locale === "hr-HR" ? "Usluge" : "In Plan"), href: ROUTES.IN_PLAN },
+    { title: (locale.locale === "hr-HR" ? "U Izgradnji" : "In Construction"), href: ROUTES.IN_CONSTRUCTION },
+    { title: (locale.locale === "hr-HR" ? "U Planu" : "In Plan"), href: ROUTES.IN_PLAN },
     { title: (locale.locale === "hr-HR" ? "O nama" : "About Us"), href: ROUTES.ABOUT_US },
     { title: (locale.locale === "hr-HR" ? "Kontakt" : "Contact"), href: ROUTES.CONTACT },
     // { title: (locale.locale === "hr-HR" ? "Blog" : "Blog"), href: ROUTES.BLOG },
