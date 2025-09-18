@@ -21,8 +21,8 @@ const HomePage = () => {
   return (
     <>
       <Helmet>
-        <title>{content?.homePageSeo?.metaTitle}</title>
-        <meta name="description" content={content?.homePageSeo?.metaDescription} />
+        <title>ElitProjekt | Stambeni objekti Zagreb & Jadranska obala</title>
+        <meta name="description" content="Otkrijte ekskluzivnu ponudu stambenih objekata ElitProjekt u Zagrebu i na jadranskoj obali. Kvalitetni projekti, premium lokacije, profesionalna usluga." />
       </Helmet>
 
       <HeroSection content={content} />

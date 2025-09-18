@@ -53,7 +53,7 @@ const InConstructionDetails = () => {
   return (
     <>
       <Helmet>
-        <title>{project?.name} - Elit Projekt</title>
+        <title>{project?.name} | {project?.location} | Elit Projekt</title>
         <meta
           name="description"
           content={project?.description?.substring(0, 160)}

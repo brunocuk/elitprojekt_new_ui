@@ -38,10 +38,10 @@ const AboutPage = () => {
   return (
     <>
       <Helmet>
-        <title>{aboutContent?.projectsSeo?.metaTitle}</title>
+        <title>O nama | ElitProjekt - Gradnja stambenih objekata Zagreb</title>
         <meta
           name="description"
-          content={aboutContent?.projectsSeo?.metaDescription}
+          content="ElitProjekt d.o.o. - tvrtka osnovana 2019. za gradnju i prodaju stambenih objekata u Hrvatskoj. Kvalitetni materijali, potpuna dokumentacija, pouzdanost."
         />
       </Helmet>
       

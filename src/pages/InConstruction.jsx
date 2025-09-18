@@ -37,10 +37,10 @@ const InConstruction = () => {
   return (
     <>
       <Helmet>
-        <title>{"content?.projectsSeo.metaTitle"}</title>
+        <title>{"U Izgradnji | ElitProjekt | Stanovi Zagreb & Jadranska obala"}</title>
         <meta
           name="description"
-          content={"content?.projectsSeo.metaDescription"}
+          content={"Pogledajte aktualne projekte u izgradnji ElitProjekt - stanovi u Zagrebu, objekti na jadranskoj obali. Kvalitetna gradnja, moderna rješenja, potpuna dokumentacija."}
         />
       </Helmet>
       <div className="px-11 pt-32 flex flex-col items-center justify-center bg-white">

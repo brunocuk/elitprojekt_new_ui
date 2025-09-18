@@ -16,10 +16,10 @@ const ContactPage = () => {
   return (
     <>
       <Helmet>
-        <title>{content?.contactSeo?.metaTitle}</title>
+        <title>Kontakt | ElitProjekt Zagreb - Stambeni objekti Hrvatska</title>
         <meta
           name="description"
-          content={content?.contactSeo?.metaDescription}
+          content="Kontaktirajte ElitProjekt za stambene objekte u Zagrebu i na Jadranu. Tel: +385 99 4339 499, email: info@elitprojekt.com. Besplatne konzultacije."
         />
       </Helmet>
       <motion.div className="relative flex lg:flex-row flex-col lg:items-start items-center justify-between gap-12 sm:gap-14 md:gap-24 lg:gap-24 xl:gap-32 2xl:gap-56 px-4 sm:px-8 md:px-16 lg:px-8 xl:px-20 2xl:px-44 h-auto md:py-56 py-32">
