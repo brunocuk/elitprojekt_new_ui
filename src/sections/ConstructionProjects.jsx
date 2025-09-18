@@ -1,9 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import {
-  Navigation,
-  Pagination,
-  A11y,
-} from "swiper/modules";
+import { Navigation, Pagination, A11y } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -24,8 +20,18 @@ const ConstructionProjects = ({ id, content }) => {
   useEffect(() => {
     const fetchContent = async () => {
       try {
-        const res = await axios.get(`${API_PATH}/api/in-constructions?locale=${locale}&populate=*`);
-        setProjects(res.data.data);
+        const res = await axios.get(
+          `${API_PATH}/api/in-constructions?locale=${locale}&populate=*`
+        );
+
+        // Sort projects by sortNumber (ascending: 1, 2, 3, etc.)
+        const sortedProjects = res.data.data.sort((a, b) => {
+          const sortA = a.sortNumber || 0;
+          const sortB = b.sortNumber || 0;
+          return sortA - sortB;
+        });
+
+        setProjects(sortedProjects);
         setLoading(false);
       } catch (err) {
         console.error("Error fetching home page:", err);
@@ -42,7 +48,7 @@ const ConstructionProjects = ({ id, content }) => {
         <h3 className="font-medium text-[35px] sm:text-[48px] md:text-[48px] lg:text-[48px] xl:text-[57px] 2xl:text-[60px] text-center leading-tight text-dark-color">
           {content?.inConstructionTitle}
         </h3>
-        
+
         <p className="font-normal text-sm sm:text-base md:text-base lg:text-base text-center pretty tracking-wide leading-5 sm:leading-6 md:leading-7 max-w-[90%] sm:max-w-[550px] md:max-w-[650px] text-light-gray px-2">
           {content?.inConstructionSubtitle}
         </p>
@@ -55,9 +61,10 @@ const ConstructionProjects = ({ id, content }) => {
             slidesPerView={1.1}
             spaceBetween={12}
             navigation={{
-              enabled: typeof window !== 'undefined' && window.innerWidth >= 768,
-              nextEl: '.swiper-button-next-custom-construction',
-              prevEl: '.swiper-button-prev-custom-construction',
+              enabled:
+                typeof window !== "undefined" && window.innerWidth >= 768,
+              nextEl: ".swiper-button-next-custom-construction",
+              prevEl: ".swiper-button-prev-custom-construction",
             }}
             pagination={{
               clickable: true,
@@ -83,13 +90,16 @@ const ConstructionProjects = ({ id, content }) => {
               1280: {
                 slidesPerView: 3,
                 spaceBetween: 64,
-              }
+              },
             }}
           >
             {projects?.map((project) => (
               <SwiperSlide key={project.id}>
                 <div className="relative w-full h-[400px] rounded-lg sm:rounded-xl overflow-hidden shadow-lg group">
-                  <Link to={`/in-construction/${project.slug}`} state={{ content: content }}>
+                  <Link
+                    to={`/in-construction/${project.slug}`}
+                    state={{ content: content }}
+                  >
                     <img
                       src={project.coverImage.url}
                       alt={project.name}
@@ -109,24 +119,34 @@ const ConstructionProjects = ({ id, content }) => {
           {/* Custom Navigation Arrows - Bottom Right */}
           <div className="flex items-center justify-end gap-3 mt-8 hidden md:flex">
             <div className="swiper-button-prev-custom-construction w-12 h-12 bg-white border border-gray-200 rounded-full shadow-md flex items-center justify-center cursor-pointer hover:bg-gray-50 hover:scale-105 transition-all duration-200 group">
-              <svg 
-                className="w-5 h-5 text-dark-text group-hover:text-black transition-colors" 
-                fill="none" 
-                stroke="currentColor" 
+              <svg
+                className="w-5 h-5 text-dark-text group-hover:text-black transition-colors"
+                fill="none"
+                stroke="currentColor"
                 viewBox="0 0 24 24"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 19l-7-7 7-7"
+                />
               </svg>
             </div>
 
             <div className="swiper-button-next-custom-construction w-12 h-12 bg-white border border-gray-200 rounded-full shadow-md flex items-center justify-center cursor-pointer hover:bg-gray-50 hover:scale-105 transition-all duration-200 group">
-              <svg 
-                className="w-5 h-5 text-dark-text group-hover:text-black transition-colors" 
-                fill="none" 
-                stroke="currentColor" 
+              <svg
+                className="w-5 h-5 text-dark-text group-hover:text-black transition-colors"
+                fill="none"
+                stroke="currentColor"
                 viewBox="0 0 24 24"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
               </svg>
             </div>
           </div>

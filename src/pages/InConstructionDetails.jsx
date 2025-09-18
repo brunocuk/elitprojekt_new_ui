@@ -13,6 +13,7 @@ import ContactSection from "../sections/ContactSection";
 import FaqComponent from "../components/FaqComponent";
 import { Helmet } from "react-helmet";
 import NotFound from "./NotFound";
+import LoadingScreen from "../components/LoadingScreen";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, A11y } from "swiper/modules";
 import "swiper/css";
@@ -47,7 +48,7 @@ const InConstructionDetails = () => {
     fetchContent();
   }, [slug, locale]);
 
-  if (loading) return <p className="text-center py-20">Loading...</p>;
+  if (loading) return <LoadingScreen />;
   if (!project) return <NotFound />;
 
   return (

@@ -27,7 +27,15 @@ const PlanedProjects = ({ id, content }) => {
         const res = await axios.get(
           `${API_PATH}/api/in-plans?locale=${locale}&populate=*`
         );
-        setProjects(res.data.data);
+        
+        // Sort projects by sortNumber (ascending: 1, 2, 3, etc.)
+        const sortedProjects = res.data.data.sort((a, b) => {
+          const sortA = a.sortNumber || 0;
+          const sortB = b.sortNumber || 0;
+          return sortA - sortB;
+        });
+
+        setProjects(sortedProjects);
         setLoading(false);
       } catch (err) {
         console.error("Error fetching home page:", err);

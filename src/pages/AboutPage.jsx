@@ -25,10 +25,8 @@ const AboutPage = () => {
           `${API_PATH}/api/about-us?locale=${locale}&populate=*`
         );
         setAboutContent(res.data.data);
-        setLoading(false);
       } catch (err) {
         console.error("Error fetching home page:", err);
-        setLoading(false);
       }
     };
 

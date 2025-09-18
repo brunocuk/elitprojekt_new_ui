@@ -94,7 +94,7 @@ const MobileNavLink = ({ title, href, closeMobMenu }) => {
   return (
     <motion.div
       variants={mobileLinkVars}
-      className="md:text-8xl text-4xl uppercase text-white font-medium"
+      className="md:text-8xl text-3xl uppercase text-white font-medium"
     >
       <Link onClick={closeMobMenu}  to={href}>{title}</Link>
     </motion.div>

@@ -5,18 +5,20 @@ import transition from "../transition";
 import { Helmet } from "react-helmet";
 import { useContent } from "../config/contentContext";
 import constantsExport from "../config/constants";
-import FullScreenVideoSection from "../components/FullScreenVideoSection"
-import diPlanVideo from "../assets/video/elitProjektVideo.mp4"
+import FullScreenVideoSection from "../components/FullScreenVideoSection";
+import diPlanVideo from "../assets/video/elitProjektVideo.mp4";
 import ContactSection from "../sections/ContactSection";
-import FaqComponent from "../components/FaqComponent"
+import FaqComponent from "../components/FaqComponent";
+import LoadingScreen from "../components/LoadingScreen";
+import ErrorScreen from "../components/ErrorScreen";
 
 const API_PATH = constantsExport.API_PATH;
 
 const HomePage = () => {
   const { content, loading, error } = useContent();
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error loading content. Please try again.</p>;
+  if (loading) return <LoadingScreen />;
+  if (error) return <ErrorScreen />;
 
   return (
     <>

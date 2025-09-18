@@ -14,7 +14,7 @@ const API_PATH = constantsExport.API_PATH;
 
 const InConstruction = () => {
   const { locale } = useLocale();
-  const { content, loading, error } = useContent();
+  const { content } = useContent();
   const [projects, setProjects] = useState(null);
 
   useEffect(() => {
@@ -23,11 +23,17 @@ const InConstruction = () => {
         const res = await axios.get(
           `${API_PATH}/api/in-constructions?locale=${locale}&populate=*`
         );
-        setProjects(res.data.data);
-        setLoading(false);
+
+        // Sort projects by sortNumber (ascending: 1, 2, 3, etc.)
+        const sortedProjects = res.data.data.sort((a, b) => {
+          const sortA = a.sortNumber || 0;
+          const sortB = b.sortNumber || 0;
+          return sortA - sortB;
+        });
+
+        setProjects(sortedProjects);
       } catch (err) {
         console.error("Error fetching home page:", err);
-        setLoading(false);
       }
     };
 
