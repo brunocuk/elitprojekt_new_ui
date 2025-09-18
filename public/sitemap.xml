@@ -1,12 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
    <url>
-      <loc>https://di-plan.hr/</loc>
+      <loc>https://elitprojekt.com/</loc>
       <lastmod>2025-01-27</lastmod>
       <changefreq>monthly</changefreq>
       <priority>1.0</priority>
    </url>
-   
-
-
+   <url>
+      <loc>https://elitprojekt.com/in-construction</loc>
+      <lastmod>2025-01-27</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>1.0</priority>
+   </url>
+   <url>
+      <loc>https://elitprojekt.com/in-plan</loc>
+      <lastmod>2025-01-27</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>1.0</priority>
+   </url>
+   <url>
+      <loc>https://elitprojekt.com/about-us</loc>
+      <lastmod>2025-01-27</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>1.0</priority>
+   </url>
+   <url>
+      <loc>https://elitprojekt.com/contact</loc>
+      <lastmod>2025-01-27</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>1.0</priority>
+   </url>
+   <url>
+      <loc>https://elitprojekt.com/in-construction/apartmani-zaboric</loc>
+      <lastmod>2025-01-27</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>1.0</priority>
+   </url>
+   <url>
+      <loc>https://elitprojekt.com/in-construction/ville-bukovac</loc>
+      <lastmod>2025-01-27</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>1.0</priority>
+   </url>
+   <url>
+      <loc>https://elitprojekt.com/in-construction/projekt-oresje-d</loc>
+      <lastmod>2025-01-27</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>1.0</priority>
+   </url>
+   <url>
+      <loc>https://elitprojekt.com/in-construction/marina-sea-spirit-residence</loc>
+      <lastmod>2025-01-27</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>1.0</priority>
+   </url>
+   <url>
+      <loc>https://elitprojekt.com/in-plan/projekt-zagreb-rudes</loc>
+      <lastmod>2025-01-27</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>1.0</priority>
+   </url>
+   <url>
+      <loc>https://elitprojekt.com/in-plan/trogir-centar</loc>
+      <lastmod>2025-01-27</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>1.0</priority>
+   </url>
+   <url>
+      <loc>https://elitprojekt.com/in-plan/projekt-stari-grad-hvar</loc>
+      <lastmod>2025-01-27</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>1.0</priority>
+   </url>
+   <url>
+      <loc>https://elitprojekt.com/in-plan/stambeno-naselje-oresje</loc>
+      <lastmod>2025-01-27</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>1.0</priority>
+   </url>
+   <url>
+      <loc>https://elitprojekt.com/in-plan/stanovi-tresnjevka</loc>
+      <lastmod>2025-01-27</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>1.0</priority>
+   </url>
+   <url>
+      <loc>https://elitprojekt.com/in-plan/borovje-kompleks</loc>
+      <lastmod>2025-01-27</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>1.0</priority>
+   </url>
 </urlset>
