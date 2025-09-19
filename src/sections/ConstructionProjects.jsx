@@ -44,7 +44,7 @@ const ConstructionProjects = ({ id, content }) => {
 
   return (
     <div className="flex items-center justify-center">
-      <div className="flex flex-col gap-3 sm:gap-4 items-center justify-center pb-16 sm:pb-20 md:pb-24 lg:pb-32 bg-white w-full py-24">
+      <div className="flex flex-col gap-3 sm:gap-4 items-center justify-center pb-16 sm:pb-20 md:pb-24 lg:pb-32 bg-white w-full py-24 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
         <h3 className="font-medium text-[35px] sm:text-[48px] md:text-[48px] lg:text-[48px] xl:text-[57px] 2xl:text-[60px] text-center leading-tight text-dark-color">
           {content?.inConstructionTitle}
         </h3>

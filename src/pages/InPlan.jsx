@@ -49,9 +49,9 @@ const InPlan = () => {
           content={"Pogledajte aktualne projekte u planu ElitProjekt - stanovi u Zagrebu, objekti na jadranskoj obali. Kvalitetna gradnja, moderna rješenja, potpuna dokumentacija."}
         />
       </Helmet>
-      <div className="px-11 pt-32 flex flex-col items-center justify-center bg-white">
+      <div className="px-4 sm:px-6 md:px-8 lg:px-11 xl:px-11 pt-32 flex flex-col items-center justify-center bg-white">
       <h3 className="font-medium text-[35px] sm:text-[48px] md:text-[48px] lg:text-[48px] xl:text-[57px] 2xl:text-[60px] text-center leading-tight text-dark-color">
-          {locale === "hr-HR" ? "Gradimo domove s vizijom" : "We build homes with vision"}
+          {locale === "hr-HR" ? "Gradimo nekretnine s vizijom" : "We build properties with vision"}
         </h3>
         
         <p className="font-normal text-sm sm:text-base md:text-base lg:text-base text-center pretty tracking-wide leading-5 sm:leading-6 md:leading-7 max-w-[90%] sm:max-w-[550px] md:max-w-[650px] text-light-gray px-2 pb-12">

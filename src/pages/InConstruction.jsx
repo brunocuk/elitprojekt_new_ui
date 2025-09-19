@@ -49,7 +49,7 @@ const InConstruction = () => {
           content={"Pogledajte aktualne projekte u izgradnji ElitProjekt - stanovi u Zagrebu, objekti na jadranskoj obali. Kvalitetna gradnja, moderna rješenja, potpuna dokumentacija."}
         />
       </Helmet>
-      <div className="px-11 pt-32 flex flex-col items-center justify-center bg-white">
+      <div className="px-4 sm:px-6 md:px-8 lg:px-11 xl:px-11 pt-32 flex flex-col items-center justify-center bg-white">
       <h3 className="font-medium text-[35px] sm:text-[48px] md:text-[48px] lg:text-[48px] xl:text-[57px] 2xl:text-[60px] text-center leading-tight text-dark-color">
           {locale === "hr-HR" ? "Pregledajte naše nekretnine" : "View our properties"}
         </h3>

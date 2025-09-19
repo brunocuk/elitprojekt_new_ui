@@ -98,8 +98,8 @@ const NavBar = ({ scrollY, isOpen, setOpen, location }) => {
             <button
               className={`bg-white hover:bg-black text-text-dark-text hover:text-white px-6 py-4 font-medium xl:flex hidden hover:bg-gray-800 transition-colors duration-200`}
             >
-              {locale.locale === "hr-HR" && "Započni svoj projekt"}
-              {locale.locale === "en" && "Start your project"}
+              {locale.locale === "hr-HR" && "Želim nekretninu"}
+              {locale.locale === "en" && "I want a property"}
               {locale.locale === "de-DE" && "Starte dein Projekt"}
             </button>
           </Link>
