@@ -56,11 +56,11 @@ const FullScreenVideoSection = ({ videoUrl, posterImage }) => {
       <div className="absolute bottom-8 left-8 text-white">
         <Link 
           to={`/in-plan/projekt-zagreb-rudes`}
-          className="flex items-center gap-3 text-5xl font-medium text-white hover:text-gray-200 transition-colors duration-200 cursor-pointer group"
+          className="flex items-center gap-3 text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] xl:text-[36px] font-medium text-white hover:text-gray-200 transition-colors duration-200 cursor-pointer group"
         >
           Projekt Zagreb - Rudeš
           <svg 
-            className="w-10 h-10 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-200" 
+            className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 xl:w-10 xl:h-10 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-200" 
             fill="none" 
             stroke="currentColor" 
             viewBox="0 0 24 24"

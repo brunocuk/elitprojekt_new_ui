@@ -101,6 +101,7 @@ const HeroSection = ({ content }) => {
         variants={containerVariants}
       >
         {/* Trogir card */}
+        <Link to={`in-plan/trogir-centar`}>
         <motion.div 
           className="group relative flex flex-col items-end justify-end overflow-hidden rounded-[12px] sm:rounded-[16px] lg:rounded-[20px] w-full h-[300px] sm:h-[400px] lg:h-[500px]"
           variants={cardVariants}
@@ -126,8 +127,10 @@ const HeroSection = ({ content }) => {
             </Link>
           </div>
         </motion.div>
+        </Link>
 
         {/* Borovje card */}
+        <Link to={`/in-plan/borovje-kompleks`}>
         <motion.div 
           className="group relative flex flex-col items-end justify-end overflow-hidden rounded-[12px] sm:rounded-[16px] lg:rounded-[20px] w-full h-[300px] sm:h-[400px] lg:h-[500px]"
           variants={cardVariants}
@@ -153,6 +156,7 @@ const HeroSection = ({ content }) => {
             </Link>
           </div>
         </motion.div>
+        </Link>
       </motion.div>
     </motion.main>
   );
