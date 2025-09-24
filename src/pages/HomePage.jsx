@@ -23,7 +23,7 @@ const HomePage = () => {
   return (
     <>
       <Helmet>
-        <title>ElitProjekt | Stambeni objekti Zagreb & Jadranska obala</title>
+        <title>ElitProjekt | Stambeni objekti izgradnja i prodaja Zagreb & Jadranska obala</title>
         <meta name="description" content="Otkrijte ekskluzivnu ponudu stambenih objekata ElitProjekt u Zagrebu i na jadranskoj obali. Kvalitetni projekti, premium lokacije, profesionalna usluga." />
       </Helmet>
 
